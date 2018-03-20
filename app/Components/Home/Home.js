@@ -16,6 +16,12 @@ export default class Home extends React.Component {
             });
     }
 
+    removeListItem = (itemId) => (e) => {
+        this.setState({
+            listItems: this.state.listItems.filter( item => item.id !== itemId),
+        });
+    };
+
     render() {
         return (
             <div>
@@ -24,6 +30,7 @@ export default class Home extends React.Component {
                         <ListItem
                             key={item.id}
                             id={item.id}
+                            removeItem={this.removeListItem(item.id)}
                             title={item.name} >
                         </ListItem>
                     ))
