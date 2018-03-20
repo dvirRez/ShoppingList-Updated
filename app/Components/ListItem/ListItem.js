@@ -8,6 +8,7 @@ export default class ListItem extends React.Component {
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         removeItem: PropTypes.func.isRequired,
+        onItemClick: PropTypes.func.isRequired,
     };
 
     state = {
@@ -26,7 +27,7 @@ export default class ListItem extends React.Component {
                 <input
                     type="checkbox"
                     onChange={this.handleChange} />
-                <span className={this.state.checkBoxClassName} >{this.props.title}</span>
+                <span className={this.state.checkBoxClassName} onClick={this.props.onItemClick}>{this.props.title}</span>
                 <span onClick={this.props.removeItem}>X</span>
             </div>
         );
