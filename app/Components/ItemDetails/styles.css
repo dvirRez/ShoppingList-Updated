@@ -1,0 +1,27 @@
+.details_title {
+    composes: sub_title from '../../sharedStyles/styles.css';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form_style {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.button_div {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 700px) {
+    .button_div {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0;
+    }
+}

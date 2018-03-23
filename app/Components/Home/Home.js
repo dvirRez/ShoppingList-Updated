@@ -1,12 +1,12 @@
 import React from 'react';
-import getListItems from '../../helpers/api';
 import ListItem from '../ListItem/ListItem';
-import AddItem from '../AddItem/AddItem';
 import ItemDetails from '../ItemDetails/ItemDetails';
-import { Grid, Row, Col, Alert, Button } from 'react-bootstrap';
-import { header, list_title } from './styles.css';
+import AddItem from '../AddItem/AddItem';
+import getListItems from '../../helpers/api';
+import {container1, header, details_container, sub_container, app_container, list_container, sub_header, add_item_div} from './styles.css';
 
 export default class Home extends React.Component {
+
     state = {
         listItems: [],
         selectedItem: null,
@@ -23,11 +23,8 @@ export default class Home extends React.Component {
             });
     }
 
-    removeListItem = (itemId) => (e) => {
-        this.setState((prevState, props) => ({
-            listItems: prevState.listItems.filter( item => item.id !== itemId),
-        }));
-        console.log(this.state.listItems);
+    findItemById = (itemId) => {
+        return this.state.listItems.find((item) => item.id === itemId)
     };
 
     addListItem = (e) => {
@@ -46,13 +43,16 @@ export default class Home extends React.Component {
                 ],
                 nextId: prevState.nextId + 1,
             }));
-            console.log(this.state.listItems);
+            e.target.value = '';
         }
 
     };
 
-    findItemById = (itemId) => {
-        return this.state.listItems.find((item) => item.id === itemId)
+    removeListItem = (itemId) => (e) => {
+        this.setState((prevState, props) => ({
+            listItems: prevState.listItems.filter( item => item.id !== itemId),
+        }));
+        console.log(this.state.listItems);
     };
 
     toggleDetailsPanel = (itemId) => (e) => {
@@ -83,27 +83,12 @@ export default class Home extends React.Component {
         });
     };
 
-
-    renderHomeBody = () => (
-        <div>
-            {
-                this.state.listItems.map( item => (
-                    <ListItem
-                        key={item.id}
-                        id={item.id}
-                        removeItem={this.removeListItem(item.id)}
-                        title={item.name}
-                        onTitleChange={this.handleProductTitleChange}
-                        onItemClick={this.toggleDetailsPanel(item.id)}
-                    >
-                    </ListItem>
-                ))
-            }
-            <AddItem
-                placeHolder={'Add item'}
-                onEnterKey={this.addListItem}
-            />
-        </div>
+    renderSavedAlert = () => (
+        <Alert bsStyle="success" onDismiss={this.handleDismiss}>
+            <p>
+                {'Item Saved'}
+            </p>
+        </Alert>
     );
 
     handleDismiss = () => {
@@ -112,42 +97,50 @@ export default class Home extends React.Component {
         });
     };
 
-    renderSavedAlert = () => (
-        <Row>
-            <Col md={3}>
-                <Alert bsStyle="success" onDismiss={this.handleDismiss}>
-                    <p>
-                        {'Item Saved'}
-                    </p>
-                </Alert>
-            </Col>
-        </Row>
-    );
-
-    render() {
-
+    renderList() {
         return (
-            <Grid fluid={true}>
-                <Row>
-                    <Col className={header} md={12}>
-                        {'Shopping List'}
-                    </Col>
-                </Row>
-                {this.state.showAlert ? this.renderSavedAlert() : null}
-                <Row>
-                    <Col className={list_title} md={3}>
-                        {'ADD YOUR ITEMS HERE'}
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md={3}>
-                        {this.state.listItems.length > 0 ? this.renderHomeBody() : 'Loading'}
-                    </Col>
-                    <Col md={9}>
-                        {this.state.selectedItem ? <ItemDetails handleSubmit={this.saveDetails} item={this.state.selectedItem}/> : null}
-                    </Col>
-                </Row>
-            </Grid>
+            this.state.listItems.map(item => (
+                <ListItem
+                    id={item.id}
+                    key={item.id}
+                    title={item.name}
+                    removeItem={this.removeListItem(item.id)}
+                    onItemClick={this.toggleDetailsPanel(item.id)}
+                    onTitleChange={this.handleProductTitleChange}/>
+            ))
         );
     }
+
+    render() {
+        return (
+            <div className={app_container}>
+                <header className={header}>
+                    <h1>{'Shopping List'}</h1>
+                </header>
+                <div className={sub_container}>
+                    <div className={container1}>
+                        <div className={list_container}>
+                            <div className={sub_header}>
+                                <h3>{'ADD YOUR ITEMS HERE'}</h3>
+                            </div>
+                            {this.state.listItems ? this.renderList() : 'Loading' }
+                            <div className={add_item_div}>
+                                <AddItem placeHolder={'Add Item'}
+                                         onEnterKey={this.addListItem}
+                                />
+                            </div>
+                        </div>
+                        <div className={details_container}>
+                            <div className={sub_header}>
+                                <h3>{'Item Details'}</h3>
+                            </div>
+                            {this.state.selectedItem ? <ItemDetails handleSubmit={this.saveDetails} item={this.state.selectedItem}/> : null}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        );
+    }
+
 }

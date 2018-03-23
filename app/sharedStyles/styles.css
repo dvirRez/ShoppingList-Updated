@@ -1,0 +1,40 @@
+.gradient_background {
+    background: linear-gradient(rgba(0,229,145,1), rgba(47,239,188,1));
+}
+
+.title {
+    background: linear-gradient(rgba(0,229,145,1), rgba(47,239,188,1));
+    color: #ffffff;
+}
+
+.sub_title {
+    background: linear-gradient(rgba(0,229,145,1), rgba(47,239,188,1));
+    color: #ffffff;
+    --width: 300px;
+    padding: 5px;
+}
+
+.light_border {
+    border: 1px solid #d3d3d3;
+}
+
+.light_text {
+    color: #999999;
+}
+
+.item_padding {
+    padding: 5px 10px;
+}
+
+.text_cursor {
+    cursor: text;
+}
+
+.pointer_cursor {
+    cursor: pointer;
+}
+
+.input {
+    outline: none;
+    border: none;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Row, Col, input, Button } from 'react-bootstrap';
+import { details_title, form_style, button_div } from './styles.css';
 
 export default class ProductDetails extends React.Component {
 
@@ -29,40 +30,30 @@ export default class ProductDetails extends React.Component {
 
     render() {
         const item = this.props.item;
+        const itemName = item.name || '';
 
         return (
-            <form>
-                <Row>
-                    <Col sm={12}>
-                        <span>{'Quantity'}</span>
-                    </Col>
-                    <Col sm={12}>
-                        <input type="text" name="quantity" defaultValue={item.quantity} onChange={this.handleInputChange} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={12}>
-                        <span>{'Price'}</span>
-                    </Col>
-                    <Col sm={12}>
-                        <input type="text" name="price" defaultValue={item.price} onChange={this.handleInputChange} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={12}>
-                        <span>{'Description'}</span>
-                    </Col>
-                    <Col sm={12}>
-                        <input type="text" name="description" defaultValue={item.description} onChange={this.handleInputChange} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={12}>
-                        <Button type="submit" onClick={this.handleDetailsSubmit} bsStyle="primary" bsSize="small">
-                            {'Save'}
-                        </Button>
-                    </Col>
-                </Row>
+            <form className={form_style}>
+                {/*<div className={details_title}>*/}
+                    {/*{`${itemName} Details`}*/}
+                {/*</div>*/}
+                <p>
+                    <label>{'Quantity'}</label>
+                    <input type="text" name="quantity" defaultValue={item.quantity} onChange={this.handleInputChange} />
+                </p>
+                <p>
+                    <label>{'Price'}</label>
+                    <input type="text" name="price" defaultValue={item.price} onChange={this.handleInputChange} />
+                </p>
+                <p>
+                    <label>{'Description'}</label>
+                    <textarea rows={2} name="description" defaultValue={item.description} onChange={this.handleInputChange} />
+                </p>
+                <div className={button_div}>
+                    <Button type="submit" onClick={this.handleDetailsSubmit} bsStyle="primary" bsSize="small">
+                        {'Save'}
+                    </Button>
+                </div>
             </form>
         );
     }

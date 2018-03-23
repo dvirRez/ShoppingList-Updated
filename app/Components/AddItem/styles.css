@@ -1,0 +1,4 @@
+.add_item {
+    composes: input from '../../sharedStyles/styles.css';
+    padding: 10px;
+}

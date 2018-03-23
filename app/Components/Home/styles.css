@@ -1,0 +1,57 @@
+.list_container {
+    width: 300px;
+    composes: light_border from '../../sharedStyles/styles.css';
+}
+
+.container1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header {
+    padding: 15px;
+    font-size: 2em;
+    composes: gradient_background from '../../sharedStyles/styles.css';
+}
+
+.details_container {
+    width: 500px;
+    composes: light_border from '../../sharedStyles/styles.css';
+}
+
+.sub_header {
+    composes: light_border from '../../sharedStyles/styles.css';
+    composes: gradient_background from '../../sharedStyles/styles.css';
+}
+
+.add_item_div {
+    composes: light_border from '../../sharedStyles/styles.css';
+}
+
+.sub_container {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.app_container {
+    --display: flex;
+    --align-items: center;
+    --justify-content: center;
+    width: 100%;
+    height: 800px;
+}
+
+@media only screen and (max-width: 700px) {
+    .container1 {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .details_container {
+        width: 300px;
+    }
+    .sub_container {
+        justify-content: center;
+        align-items: flex-start;
+    }
+}

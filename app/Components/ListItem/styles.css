@@ -1,7 +1,33 @@
 .basicItem {
-
+    composes: light_text from '../../sharedStyles/styles.css';
+    composes: item_padding from '../../sharedStyles/styles.css';
+    composes: text_cursor from '../../sharedStyles/styles.css';
+    composes: input from '../../sharedStyles/styles.css';
 }
 
 .deletedItem {
     text-decoration: line-through;
+    composes: light_text from '../../sharedStyles/styles.css';
+    composes: item_padding from '../../sharedStyles/styles.css';
+    composes: text_cursor from '../../sharedStyles/styles.css';
+    composes: input from '../../sharedStyles/styles.css';
+}
+
+.items_container {
+    composes: light_border from '../../sharedStyles/styles.css';
+    padding: 5px 10px;
+}
+
+.remove_item {
+    color: red;
+    padding: 5px;
+    composes: pointer_cursor from '../../sharedStyles/styles.css';
+}
+
+.edit_item {
+    composes: pointer_cursor from '../../sharedStyles/styles.css';
+}
+
+.clickable_elements {
+    float: right;
 }

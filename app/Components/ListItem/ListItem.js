@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { basicItem, deletedItem } from './styles.css';
+import { basicItem, deletedItem, remove_item, items_container, edit_item, clickable_elements } from './styles.css';
 import { RIEInput } from 'riek';
 import FaEdit from 'react-icons/lib/fa/edit';
 
@@ -15,12 +15,12 @@ export default class ListItem extends React.Component {
     };
 
     state = {
-        checkBoxClassName: basicItem,
+        productNameClass: basicItem,
     };
 
     handleChange = (e) => {
         this.setState({
-            checkBoxClassName: e.target.checked ? deletedItem : basicItem,
+            productNameClass: e.target.checked ? deletedItem : basicItem,
         });
     };
 
@@ -30,13 +30,17 @@ export default class ListItem extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={items_container}>
                 <input
                     type="checkbox"
-                    onChange={this.handleChange} />
-                <RIEInput className={this.state.checkBoxClassName} value={this.props.title} propName="itemTitle" change={this.handleTitleChange}/>
-                <FaEdit onClick={this.props.onItemClick}/>
-                <span  className={remove_item} onClick={this.props.removeItem}>X</span>
+                    onChange={this.handleChange}
+                />
+                <RIEInput className={this.state.productNameClass} classEditing={edit_item} value={this.props.title} propName="itemTitle" change={this.handleTitleChange}/>
+                <span className={clickable_elements}>
+                    <FaEdit className={edit_item} onClick={this.props.onItemClick}/>
+                    <span  className={remove_item} onClick={this.props.removeItem}>X</span>
+                </span>
+
             </div>
         );
     }

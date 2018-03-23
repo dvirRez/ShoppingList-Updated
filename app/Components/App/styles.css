@@ -1,0 +1,11 @@
+.app_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+}
+
+form p {
+    display: flex;
+    flex-direction: column;
+}
