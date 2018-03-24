@@ -1,13 +1,14 @@
 import React from 'react';
 import ItemDetails from '../ItemDetails/ItemDetails';
 import ShoppingList from '../ShoppingList/ShoppingList';
+import Loading from '../Loading/Loading';
 import getListItems from '../../helpers/api';
 import styles from './styles.css';
 
 export default class Home extends React.Component {
 
     state = {
-        listItems: [],
+        listItems: null,
         selectedItem: null,
     };
 
@@ -87,23 +88,32 @@ export default class Home extends React.Component {
         </Alert>
     );
 
+    renderBody = () => (
+            <div className={styles.sub_container}>
+                <div className={styles.container1}>
+                    <div className={styles.list_outer_container}>
+                        <ShoppingList listItems={this.state.listItems} addListItem={this.addListItem} removeListItem={this.removeListItem} onItemClick={this.toggleDetailsPanel} onTitleChange={this.handleProductTitleChange} />
+                    </div>
+                    <div className={styles.details_outer_container}>
+                        {this.state.selectedItem ? <ItemDetails handleSubmit={this.saveDetails} item={this.state.selectedItem}/> : null}
+                    </div>
+                </div>
+            </div>
+    );
+
+    renderLoading = () => (
+        <div className={styles.loading_div}>
+            <Loading />
+        </div>
+    );
+
     render() {
         return (
             <div className={styles.app_container}>
                 <header className={styles.header}>
                     <span>{'Shopping List'}</span>
                 </header>
-                <div className={styles.sub_container}>
-                    <div className={styles.container1}>
-                        <div className={styles.list_outer_container}>
-                            {this.state.listItems ? <ShoppingList listItems={this.state.listItems} addListItem={this.addListItem} removeListItem={this.removeListItem} onItemClick={this.toggleDetailsPanel} onTitleChange={this.handleProductTitleChange} /> : null}
-                        </div>
-                        <div className={styles.details_outer_container}>
-                            {this.state.selectedItem ? <ItemDetails handleSubmit={this.saveDetails} item={this.state.selectedItem}/> : null}
-                        </div>
-                    </div>
-                </div>
-
+                {this.state.listItems ?  this.renderBody() : this.renderLoading()}
             </div>
         );
     }
