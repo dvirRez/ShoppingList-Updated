@@ -38,3 +38,20 @@
     outline: none;
     border: none;
 }
+
+.app_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+}
+
+.sub_header {
+    border: 1px solid #d3d3d3;
+    background: linear-gradient(rgba(0,229,145,1), rgba(47,239,188,1));
+}
+
+form p {
+    display: flex;
+    flex-direction: column;
+}

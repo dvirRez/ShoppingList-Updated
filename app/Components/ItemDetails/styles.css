@@ -18,6 +18,10 @@
     align-items: center;
 }
 
+.details_container {
+    composes: light_border from '../../sharedStyles/styles.css';
+}
+
 @media only screen and (max-width: 700px) {
     .button_div {
         flex-direction: column;

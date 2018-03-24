@@ -5,6 +5,12 @@
     width: 800px;
 }
 
+:global(.sub_header) {
+    padding: 5px;
+    background: linear-gradient(rgba(0,229,145,1), rgba(47,239,188,1));
+    color: #ffffff;
+}
+
 form p {
     display: flex;
     flex-direction: column;

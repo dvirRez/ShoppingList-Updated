@@ -1,16 +1,14 @@
 import React from 'react';
-import ListItem from '../ListItem/ListItem';
 import ItemDetails from '../ItemDetails/ItemDetails';
-import AddItem from '../AddItem/AddItem';
+import ShoppingList from '../ShoppingList/ShoppingList';
 import getListItems from '../../helpers/api';
-import {container1, header, details_container, sub_container, app_container, list_container, sub_header, add_item_div} from './styles.css';
+import styles from './styles.css';
 
 export default class Home extends React.Component {
 
     state = {
         listItems: [],
         selectedItem: null,
-        showAlert: false,
     };
 
     componentDidMount() {
@@ -52,7 +50,6 @@ export default class Home extends React.Component {
         this.setState((prevState, props) => ({
             listItems: prevState.listItems.filter( item => item.id !== itemId),
         }));
-        console.log(this.state.listItems);
     };
 
     toggleDetailsPanel = (itemId) => (e) => {
@@ -78,7 +75,6 @@ export default class Home extends React.Component {
 
         this.setState({
             listItems: newListItems,
-            showAlert: true,
             selectedItem: null,
         });
     };
@@ -91,49 +87,18 @@ export default class Home extends React.Component {
         </Alert>
     );
 
-    handleDismiss = () => {
-        this.setState({
-            showAlert: false,
-        });
-    };
-
-    renderList() {
-        return (
-            this.state.listItems.map(item => (
-                <ListItem
-                    id={item.id}
-                    key={item.id}
-                    title={item.name}
-                    removeItem={this.removeListItem(item.id)}
-                    onItemClick={this.toggleDetailsPanel(item.id)}
-                    onTitleChange={this.handleProductTitleChange}/>
-            ))
-        );
-    }
-
     render() {
         return (
-            <div className={app_container}>
-                <header className={header}>
-                    <h1>{'Shopping List'}</h1>
+            <div className={styles.app_container}>
+                <header className={styles.header}>
+                    <span>{'Shopping List'}</span>
                 </header>
-                <div className={sub_container}>
-                    <div className={container1}>
-                        <div className={list_container}>
-                            <div className={sub_header}>
-                                <h3>{'ADD YOUR ITEMS HERE'}</h3>
-                            </div>
-                            {this.state.listItems ? this.renderList() : 'Loading' }
-                            <div className={add_item_div}>
-                                <AddItem placeHolder={'Add Item'}
-                                         onEnterKey={this.addListItem}
-                                />
-                            </div>
+                <div className={styles.sub_container}>
+                    <div className={styles.container1}>
+                        <div className={styles.list_outer_container}>
+                            {this.state.listItems ? <ShoppingList listItems={this.state.listItems} addListItem={this.addListItem} removeListItem={this.removeListItem} onItemClick={this.toggleDetailsPanel} onTitleChange={this.handleProductTitleChange} /> : null}
                         </div>
-                        <div className={details_container}>
-                            <div className={sub_header}>
-                                <h3>{'Item Details'}</h3>
-                            </div>
+                        <div className={styles.details_outer_container}>
                             {this.state.selectedItem ? <ItemDetails handleSubmit={this.saveDetails} item={this.state.selectedItem}/> : null}
                         </div>
                     </div>

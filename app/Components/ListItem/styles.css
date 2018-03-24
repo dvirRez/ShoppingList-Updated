@@ -14,7 +14,7 @@
 }
 
 .items_container {
-    composes: light_border from '../../sharedStyles/styles.css';
+    border-bottom: 1px solid #d3d3d3;
     padding: 5px 10px;
 }
 
