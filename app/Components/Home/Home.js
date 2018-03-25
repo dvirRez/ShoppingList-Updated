@@ -28,7 +28,7 @@ export default class Home extends React.Component {
 
     addListItem = (e) => {
         if(e.charCode==13) {
-            const newItemName = e.target.value || '';
+            const newItemName = e.target.value || 'Blank';
             this.setState((prevState, props) => ({
                 listItems: [
                     ...prevState.listItems,
@@ -54,9 +54,11 @@ export default class Home extends React.Component {
     };
 
     toggleDetailsPanel = (itemId) => (e) => {
-        this.setState((prevState, props) => ({
-            selectedItem: prevState.selectedItem ? null : this.findItemById(itemId),
-        }));
+        this.setState((prevState, props) => {
+            return {
+                selectedItem: (prevState.selectedItem && prevState.selectedItem.id === itemId) ? null : this.findItemById(itemId),
+            };
+        });
     };
 
     handleProductTitleChange = (itemId, newName) => {

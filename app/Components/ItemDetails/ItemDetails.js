@@ -40,15 +40,15 @@ export default class ProductDetails extends React.Component {
                 <form className={styles.form_style}>
                     <p>
                         <label>{'Quantity'}</label>
-                        <input type="text" name="quantity" defaultValue={item.quantity} onChange={this.handleInputChange} />
+                        <input type="text" name="quantity" value={item.quantity} onChange={this.handleInputChange} />
                     </p>
                     <p>
                         <label>{'Price'}</label>
-                        <input type="text" name="price" defaultValue={item.price} onChange={this.handleInputChange} />
+                        <input type="text" name="price" value={item.price} onChange={this.handleInputChange} />
                     </p>
                     <p>
                         <label>{'Description'}</label>
-                        <textarea rows={2} name="description" defaultValue={item.description} onChange={this.handleInputChange} />
+                        <textarea rows={2} name="description" value={item.description} onChange={this.handleInputChange} />
                     </p>
                     <div className={styles.button_div}>
                         <Button type="submit" onClick={this.handleDetailsSubmit} bsStyle="primary" bsSize="small">
