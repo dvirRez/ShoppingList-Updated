@@ -26,6 +26,10 @@
     composes: pointer_cursor from '../../sharedStyles/styles.css';
 }
 
+.edit_input {
+    font-size: 13px;
+}
+
 .clickable_elements {
     float: right;
 }

@@ -38,7 +38,7 @@ export default class ListItem extends React.Component {
                     onChange={this.handleChange}
                 />
                 <span className={this.state.productNameClass}>
-                    <RIEInput className={styles.item_name} classEditing={styles.edit_item} value={this.props.title} propName="itemTitle" change={this.handleTitleChange}/>
+                    <RIEInput className={styles.item_name} classEditing={styles.edit_input} value={this.props.title} propName="itemTitle" change={this.handleTitleChange}/>
                 </span>
                 <span className={styles.clickable_elements}>
                     <FaEdit className={styles.edit_item} onClick={this.props.onItemClick}/>
