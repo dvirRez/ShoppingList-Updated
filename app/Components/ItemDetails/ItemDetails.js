@@ -6,7 +6,8 @@ import styles from './styles.css';
 export default class ProductDetails extends React.Component {
 
     static propTypes = {
-      handleSubmit: PropTypes.func.isRequired,
+        handleSubmit: PropTypes.func.isRequired,
+        item: PropTypes.any.isRequired,
     };
 
     state = {
@@ -17,12 +18,14 @@ export default class ProductDetails extends React.Component {
         description: this.props.item.description || 0,
     };
 
+    // Set appropriate property in state by input name
     handleInputChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
         });
     };
 
+    // Submit changed item to parent component
     handleDetailsSubmit = (e) => {
         this.props.handleSubmit(this.state);
         e.preventDefault();
@@ -40,18 +43,18 @@ export default class ProductDetails extends React.Component {
                 <form className={styles.form_style}>
                     <p>
                         <label>{'Quantity'}</label>
-                        <input type="text" name="quantity" value={item.quantity} onChange={this.handleInputChange} />
+                        <input type="text" ref="quantity" name="quantity" value={this.state.quantity}  onChange={this.handleInputChange} />
                     </p>
                     <p>
                         <label>{'Price'}</label>
-                        <input type="text" name="price" value={item.price} onChange={this.handleInputChange} />
+                        <input type="text" ref="price" name="price" value={this.state.price} onChange={this.handleInputChange}/>
                     </p>
                     <p>
                         <label>{'Description'}</label>
-                        <textarea rows={2} name="description" value={item.description} onChange={this.handleInputChange} />
+                        <textarea rows={2} ref="description" name="description" value={this.state.description} onChange={this.handleInputChange}/>
                     </p>
                     <div className={styles.button_div}>
-                        <Button type="submit" onClick={this.handleDetailsSubmit} bsStyle="primary" bsSize="small">
+                        <Button onClick={this.handleDetailsSubmit} bsStyle="primary" bsSize="small">
                             {'Save'}
                         </Button>
                     </div>

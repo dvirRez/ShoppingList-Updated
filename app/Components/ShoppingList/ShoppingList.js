@@ -1,6 +1,5 @@
 import React from 'react';
 import ListItem from '../ListItem/ListItem';
-import AddItem from '../AddItem/AddItem';
 import styles from './styles.css';
 
 export default function ShoppingList({listItems, addListItem, removeListItem, onItemClick, onTitleChange}) {
@@ -26,8 +25,11 @@ export default function ShoppingList({listItems, addListItem, removeListItem, on
             </div>
             { renderList() }
             <div className={styles.add_item_div}>
-                <AddItem placeHolder={'Add Item'}
-                         onEnterKey={addListItem}
+                <input
+                    type="text"
+                    placeholder={'Add Item'}
+                    onKeyPress={addListItem}
+                    className={styles.add_item}
                 />
             </div>
         </div>

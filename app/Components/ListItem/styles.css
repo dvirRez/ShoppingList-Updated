@@ -1,12 +1,4 @@
-.basicItem {
-    composes: light_text from '../../sharedStyles/styles.css';
-    composes: item_padding from '../../sharedStyles/styles.css';
-    composes: text_cursor from '../../sharedStyles/styles.css';
-    composes: input from '../../sharedStyles/styles.css';
-}
-
-.deletedItem {
-    text-decoration: line-through;
+.item_name {
     composes: light_text from '../../sharedStyles/styles.css';
     composes: item_padding from '../../sharedStyles/styles.css';
     composes: text_cursor from '../../sharedStyles/styles.css';
@@ -18,6 +10,11 @@
     padding: 5px 10px;
 }
 
+.deleted_item_text_outer {
+    color: black;
+    text-decoration: line-through;
+}
+
 .remove_item {
     color: red;
     padding: 5px;
@@ -25,6 +22,7 @@
 }
 
 .edit_item {
+    font-size: 16px;
     composes: pointer_cursor from '../../sharedStyles/styles.css';
 }
 
