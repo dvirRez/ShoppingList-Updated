@@ -31,21 +31,23 @@ export default class App extends React.Component {
     // Consider refactoring to using component state instead
     addListItem = (e) => {
         if(e.charCode==13) {
-            const newItemName = e.target.value || 'Blank';
-            this.setState((prevState, props) => ({
-                listItems: [
-                    ...prevState.listItems,
-                    {
-                        id: prevState.nextId,
-                        name: newItemName,
-                        quantity: 0,
-                        price: 0,
-                        description: '',
-                    }
-                ],
-                nextId: prevState.nextId + 1,
-            }));
-            e.target.value = '';
+            const newName = e.target.value;
+            if(newName !== '') {
+                this.setState((prevState, props) => ({
+                    listItems: [
+                        ...prevState.listItems,
+                        {
+                            id: prevState.nextId,
+                            name: newName,
+                            quantity: 0,
+                            price: 0,
+                            description: '',
+                        }
+                    ],
+                    nextId: prevState.nextId + 1,
+                }));
+                e.target.value = '';
+            }
         }
 
     };
@@ -70,7 +72,7 @@ export default class App extends React.Component {
     handleProductTitleChange = (itemId, newName) => {
         const indexToUpdate = this.state.listItems.findIndex((item) => item.id === itemId);
         let newListItems = [...this.state.listItems];
-        newListItems[indexToUpdate].name = newName;
+        newListItems[indexToUpdate].name = newName !== '' ? newName : newListItems[indexToUpdate].name; // Make sure user can't input empty string
 
         this.setState({
             listItems: newListItems,
