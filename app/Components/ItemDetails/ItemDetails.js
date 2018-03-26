@@ -13,9 +13,9 @@ export default class ProductDetails extends React.Component {
     state = {
         id: this.props.item.id,
         name: this.props.item.name,
-        quantity: this.props.item.quantity || 0,
-        price: this.props.item.price || 0,
-        description: this.props.item.description || 0,
+        quantity: this.props.item.quantity,
+        price: this.props.item.price,
+        description: this.props.item.description,
     };
 
     // Set appropriate property in state by input name
