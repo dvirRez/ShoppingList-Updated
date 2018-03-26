@@ -18,6 +18,19 @@ export default class ProductDetails extends React.Component {
         description: this.props.item.description,
     };
 
+    // We need to set the state when item is changed in <App>
+    componentWillReceiveProps( newProps ) {
+        if ( this.props.item !== newProps.item ) {
+            this.setState( {
+                id: newProps.item.id,
+                name: newProps.item.name,
+                quantity: newProps.item.quantity,
+                price: newProps.item.price,
+                description: newProps.item.description,
+            } );
+        }
+    }
+
     // Set appropriate property in state by input name
     handleInputChange = (e) => {
         this.setState({
@@ -43,15 +56,15 @@ export default class ProductDetails extends React.Component {
                 <form className={styles.form_style}>
                     <p>
                         <label>{'Quantity'}</label>
-                        <input type="text" ref="quantity" name="quantity" value={this.state.quantity}  onChange={this.handleInputChange} />
+                        <input type="text" name="quantity" value={this.state.quantity}  onChange={this.handleInputChange} />
                     </p>
                     <p>
                         <label>{'Price'}</label>
-                        <input type="text" ref="price" name="price" value={this.state.price} onChange={this.handleInputChange}/>
+                        <input type="text" name="price" value={this.state.price} onChange={this.handleInputChange}/>
                     </p>
                     <p>
                         <label>{'Description'}</label>
-                        <textarea rows={2} ref="description" name="description" value={this.state.description} onChange={this.handleInputChange}/>
+                        <textarea rows={2} name="description" value={this.state.description} onChange={this.handleInputChange}/>
                     </p>
                     <div className={styles.button_div}>
                         <Button onClick={this.handleDetailsSubmit} bsStyle="primary" bsSize="small">
