@@ -56,11 +56,11 @@ export default class ProductDetails extends React.Component {
                 <form className={styles.form_style}>
                     <p>
                         <label>{'Quantity'}</label>
-                        <input type="text" name="quantity" value={this.state.quantity}  onChange={this.handleInputChange} />
+                        <input min="0" type="number" name="quantity" value={this.state.quantity}  onChange={this.handleInputChange} />
                     </p>
                     <p>
                         <label>{'Price'}</label>
-                        <input type="text" name="price" value={this.state.price} onChange={this.handleInputChange}/>
+                        <input min="0" type="number" name="price" value={this.state.price} onChange={this.handleInputChange}/>
                     </p>
                     <p>
                         <label>{'Description'}</label>
