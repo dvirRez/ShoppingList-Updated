@@ -38,7 +38,7 @@ export default class App extends React.Component {
                         ...prevState.listItems,
                         {
                             id: prevState.nextId,
-                            name: newName,
+                            name: newName.substring(0, 20),
                             quantity: 0,
                             price: 0,
                             description: '',
@@ -72,7 +72,7 @@ export default class App extends React.Component {
     handleProductTitleChange = (itemId, newName) => {
         const indexToUpdate = this.state.listItems.findIndex((item) => item.id === itemId);
         let newListItems = [...this.state.listItems];
-        newListItems[indexToUpdate].name = newName !== '' ? newName : newListItems[indexToUpdate].name; // Make sure user can't input empty string
+        newListItems[indexToUpdate].name = newName !== '' ? newName.substring(0, 20) : newListItems[indexToUpdate].name; // Make sure user can't input empty string
 
         this.setState({
             listItems: newListItems,
