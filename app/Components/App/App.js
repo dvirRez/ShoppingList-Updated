@@ -1,7 +1,6 @@
 import React from 'react';
 import ItemDetails from '../ItemDetails/ItemDetails';
 import ShoppingList from '../ShoppingList/ShoppingList';
-import { Alert } from 'react-bootstrap';
 import Loading from '../Loading/Loading';
 import getListItems from '../../helpers/api';
 import styles from './styles.css';
@@ -87,8 +86,6 @@ export default class App extends React.Component {
 
         this.setState({
             listItems: newListItems,
-            selectedItem: null,
-            showAlert: true,
         });
     };
 
@@ -98,22 +95,11 @@ export default class App extends React.Component {
         });
     };
 
-    renderSavedAlert = () => (
-        <div className={styles.alert_div}>
-            <Alert bsStyle="success" onDismiss={this.handleDismiss}>
-                <p>
-                    {'Item Saved'}
-                </p>
-            </Alert>
-        </div>
-    );
-
     renderBody = () => (
         <div className={styles.app_container}>
             <header className={styles.header}>
                 <span>{'Shopping List'}</span>
             </header>
-            {this.state.showAlert ? this.renderSavedAlert() : null}
             <div className={styles.sub_container}>
                 <div className={styles.container1}>
                     <div className={styles.list_outer_container}>

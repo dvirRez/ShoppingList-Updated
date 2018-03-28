@@ -31,17 +31,11 @@ export default class ProductDetails extends React.Component {
         }
     }
 
-    // Set appropriate property in state by input name
+    // Set appropriate property in state by input name and emit changes to App component
     handleInputChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
-        });
-    };
-
-    // Submit changed item to parent component
-    handleDetailsSubmit = (e) => {
-        this.props.handleSubmit(this.state);
-        e.preventDefault();
+        }, () => this.props.handleSubmit(this.state));
     };
 
     render() {
@@ -66,11 +60,6 @@ export default class ProductDetails extends React.Component {
                         <label>{'Description'}</label>
                         <textarea rows={2} name="description" value={this.state.description} onChange={this.handleInputChange}/>
                     </p>
-                    <div className={styles.button_div}>
-                        <Button onClick={this.handleDetailsSubmit} bsStyle="primary" bsSize="small">
-                            {'Save'}
-                        </Button>
-                    </div>
                 </form>
             </div>
 
